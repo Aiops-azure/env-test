@@ -24,9 +24,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+           fetch-depth: 0
       
       - name: Super-Linter
         uses: github/super-linter@v4.7.1
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
